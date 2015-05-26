@@ -1,3 +1,5 @@
+array = project.util.array
+
 factorial ^n = {
   helper ^num ^acc = {
     if (num == 0) ^!(
@@ -19,7 +21,7 @@ pow ^a ^b = {
   helper a b 1
 }
 
-private.fibCache = []
+fibCache = []
 fib ^n = {
   if (n < 0) ^!(
     posN = n.negate
@@ -38,3 +40,9 @@ fib ^n = {
   fibCache n = result
   return result
 }
+
+inc ^a ^obj = {
+  obj.genArg = obj.genArg + 1
+  return a
+}
+natural = array.lazyEnum.create inc 1

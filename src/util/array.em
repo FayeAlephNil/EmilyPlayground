@@ -122,3 +122,24 @@ natural = ^(
   )
   return result
 )
+
+lazyEnum = [
+  genArg = null
+  gen ^a = {return this.genArg}
+  create ^generator ^start = {
+    result = [
+      parent = lazyEnum
+    ]
+    result.gen = generator
+    result.genArg = start
+    return result
+  }
+
+  next ^a = {
+    result = this.gen (this.genArg) this
+    if (result) ^!(
+      return result
+    )
+    return null
+  }
+]
