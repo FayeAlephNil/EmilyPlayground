@@ -8,14 +8,14 @@ factorial ^n = {
   return (helper n 1)
 }
 
-private.fib_cache = []
+private.fibCache = []
 fib ^n = {
   if (n == 0 || n == 1) ^!(
     return n
   )
 
-  if (fib_cache[n]) ^!(
-    return fib_cache[n]
+  if (fibCache.has n) ^!(
+    return (fibCache n)
   )
 
   return ((fib (n-1)) + (fib (n-2)))
