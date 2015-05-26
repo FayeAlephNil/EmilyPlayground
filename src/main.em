@@ -1,4 +1,4 @@
 \version 0.2
-maths = project.math
+math = project.math
 
-println (maths.factorial 5) (maths.fib 5)
+println (math.factorial 5) (math.fib 5)
