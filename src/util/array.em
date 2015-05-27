@@ -23,6 +23,15 @@ reduce ^func ^array ^acc = {
   return acc
 }
 
+all ^func ^array = {
+  array.each ^!item (
+    if (!(func item)) ^!(
+      return null
+    )
+  )
+  return true
+}
+
 any ^func ^array = {
   array.each ^!item (
     if (func item) ^!(
@@ -56,6 +65,14 @@ drop ^n ^array = {
     return array
   )
   return: drop (n-1) (rest array)
+}
+
+rev ^array = {
+  result = []
+  array.each ^item (
+    result = prepend item result
+  )
+  return result
 }
 
 merge ^a1 ^a2 = {
