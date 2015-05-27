@@ -23,6 +23,20 @@ reduce ^func ^array ^acc = {
   return acc
 }
 
+select ^func ^array = {
+  result = []
+  array.each ^item (
+    if (func item) ^(
+      result.append item
+    )
+  )
+  return result
+}
+
+reject ^func ^array = {
+  select ^item (return: !(func item)) array
+}
+
 all ^func ^array = {
   array.each ^!item (
     if (!(func item)) ^!(
