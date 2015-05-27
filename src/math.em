@@ -24,8 +24,7 @@ pow ^a ^b = {
 fibCache = []
 fib ^n = {
   if (n < 0) ^!(
-    posN = n.negate
-    return: (pow (~1) posN) * (fib  posN).negate
+    return: (fib: n.negate) * ((even n) ? ~1 : 1)
   )
 
   if (n == 0 || n == 1) ^!(
@@ -39,6 +38,14 @@ fib ^n = {
   result = (fib (n-1)) + (fib (n-2))
   fibCache n = result
   return result
+}
+
+even ^num = {
+  return: num % 2 == 0
+}
+
+odd ^num = {
+  return: !(even num)
 }
 
 inc ^a ^obj = {
