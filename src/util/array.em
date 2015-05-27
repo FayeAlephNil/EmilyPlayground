@@ -32,14 +32,16 @@ all ^func ^array = {
   return true
 }
 
-any ^func ^array = {
+detect ^func ^array = {
   array.each ^!item (
     if (func item) ^!(
-      return true
+      return item
     )
   )
   return null
 }
+
+any = detect
 
 zip ^a1 ^a2 = {
   zipWith ^a ^b (
