@@ -168,7 +168,7 @@ natural = ^(
 
 enum = [
   genArg = null
-  gen ^a = {return this.genArg}
+  gen ^a ^obj = {return this.genArg}
   create ^generator ^start = {
     result = [
       parent = enum
@@ -187,20 +187,24 @@ enum = [
   }
 
   force ^ = {
+    self = this
+    obj = [parent = self]
     result = []
-    theNext = do: this.next
+    theNext = do: obj.next
     while ^(theNext) ^(
       result.append theNext
-      theNext = do: this.next
+      theNext = do: obj.next
     )
     return: result
   }
 
   take ^a = {
+    self = this
+    obj = [parent = self]
     result = []
     count = 0
     while ^(count < a) ^(
-      result.append (do: this.next)
+      result.append (do: obj.next)
       count = count + 1
     )
 
