@@ -125,6 +125,10 @@ first ^array = {
   )
 }
 
+init ^array = {
+  take ((array.count) - 1) array
+}
+
 rest ^array = {
   result = []
   count = 0
@@ -168,11 +172,21 @@ lazyEnum = [
     return result
   }
 
-  next ^a = {
+  next ^ = {
     result = this.gen (this.genArg) this
     if (result) ^!(
       return result
     )
     return null
+  }
+
+  force ^ = {
+    result = []
+    theNext = do: this.next
+    while ^(theNext) ^(
+      result.append theNext
+      theNext = do: this.next
+    )
+    return: result
   }
 ]

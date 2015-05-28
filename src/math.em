@@ -48,6 +48,21 @@ odd ^num = {
   return: !(even num)
 }
 
+aToB ^a ^b ^step = {
+  return: do: (aToBLazy a b step).force
+}
+
+aToBLazy ^a ^b ^step = {
+  gen ^arg ^obj = {
+    if (arg <= b) ^!(
+      obj.genArg = obj.genArg + step
+      return arg
+    )
+    return null
+  }
+  array.lazyEnum.create gen a
+}
+
 inc ^a ^obj = {
   obj.genArg = obj.genArg + 1
   return a
