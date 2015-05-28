@@ -91,6 +91,12 @@ rev ^array = {
   return result
 }
 
+tail = drop 1
+
+end ^array = {
+  return: array ((array.count) - 1)
+}
+
 merge ^a1 ^a2 = {
   result = []
   a1.each ^item (
