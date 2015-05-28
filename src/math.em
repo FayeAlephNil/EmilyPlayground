@@ -40,6 +40,8 @@ fib ^n = {
   return result
 }
 
+fibSeq ^a ^b ^step = array.map fib (aToB a b step)
+
 even ^num = {
   return: num % 2 == 0
 }
@@ -60,11 +62,13 @@ aToBLazy ^a ^b ^step = {
     )
     return null
   }
-  array.lazyEnum.create gen a
+  array.enum.create gen a
 }
 
 inc ^a ^obj = {
   obj.genArg = obj.genArg + 1
   return a
 }
-natural = array.lazyEnum.create inc 1
+natural ^ = {
+  return: array.enum.create inc 1
+}

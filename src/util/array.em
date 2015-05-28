@@ -166,12 +166,12 @@ natural = ^(
   return result
 )
 
-lazyEnum = [
+enum = [
   genArg = null
   gen ^a = {return this.genArg}
   create ^generator ^start = {
     result = [
-      parent = lazyEnum
+      parent = enum
     ]
     result.gen = generator
     result.genArg = start
@@ -193,6 +193,17 @@ lazyEnum = [
       result.append theNext
       theNext = do: this.next
     )
+    return: result
+  }
+
+  take ^a = {
+    result = []
+    count = 0
+    while ^(count < a) ^(
+      result.append (do: this.next)
+      count = count + 1
+    )
+
     return: result
   }
 ]
